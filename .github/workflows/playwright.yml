@@ -8,7 +8,7 @@ on:
 
 jobs:
   test:
-    name: ${{ github.event_name == 'pull_request' && 'Smoke' || 'Full Regression' }}
+    name: ${{ (github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch') && 'Smoke' || 'Full Regression' }}
     runs-on: ubuntu-latest
     timeout-minutes: 30
 
