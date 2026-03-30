@@ -70,7 +70,7 @@ mobile-specific layouts.
     │   │   ├── cart.spec.ts
     │   │   ├── categories.spec.ts
     │   │   ├── checkout.spec.ts
-    │   │   ├── loginTest.spec.ts
+    │   │   ├── login.spec.ts
     │   │   ├── navigation.spec.ts
     │   │   ├── product.spec.ts
     │   │   └── search.spec.ts
