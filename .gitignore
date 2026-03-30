@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
+/.playwright-mcp/
+
+
+# Allure
+/allure-results/
+/allure-report/
+
+# Environment
+.env
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.suo
+*.user

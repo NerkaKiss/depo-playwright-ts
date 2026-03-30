@@ -1,0 +1,56 @@
+[
+  {
+    "scenario": "password is empty",
+    "email": "mite.trudge7178@eagereverest.com",
+    "password": "",
+    "expectedError": "Būtinai užpildomas laukelis!"
+  },
+  {
+    "scenario": "email is empty",
+    "email": "",
+    "password": "SomePassword1!",
+    "expectedError": "Būtinai užpildomas laukelis!"
+  },
+  {
+    "scenario": "email has no @",
+    "email": "test.com",
+    "password": "SomePassword1!",
+    "expectedError": "Naudotojas nerastas"
+  },
+  {
+    "scenario": "email has no domain",
+    "email": "test@",
+    "password": "SomePassword1!",
+    "expectedError": "Naudotojas nerastas"
+  },
+  {
+    "scenario": "email contains spaces",
+    "email": "  test@test.com  ",
+    "password": "SomePassword1!",
+    "expectedError": "Naudotojas nerastas"
+  },
+  {
+    "scenario": "password is incorrect",
+    "email": "mite.trudge7178@eagereverest.com",
+    "password": "WrongPassword1!",
+    "expectedError": "Nurodyti neteisingi duomenys"
+  },
+  {
+    "scenario": "user does not exist",
+    "email": "nonexistent@test.com",
+    "password": "SomePassword1!",
+    "expectedError": "Naudotojas nerastas"
+  },
+  {
+    "scenario": "email contains SQL injection",
+    "email": "' OR 1=1",
+    "password": "' OR 1=1",
+    "expectedError": "Naudotojas nerastas"
+  },
+  {
+    "scenario": "email contains XSS payload",
+    "email": "<script>alert(1)</script>",
+    "password": "SomePassword1!",
+    "expectedError": "Naudotojas nerastas"
+  }
+]
