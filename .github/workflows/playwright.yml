@@ -29,7 +29,7 @@ jobs:
         run: npx playwright install --with-deps chromium
 
       - name: Run smoke tests
-        if: github.event_name == 'pull_request'
+        if: github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch'
         run: npx playwright test --grep @smoke
         env:
           CI: true
