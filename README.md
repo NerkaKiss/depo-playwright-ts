@@ -10,6 +10,7 @@ production-grade Playwright architecture.
 ![Node.js](https://img.shields.io/badge/Node.js-20-339933?logo=nodedotjs&logoColor=white)
 ![GitHub
 Actions](https://img.shields.io/badge/GitHub_Actions-CI-2088ff?logo=githubactions&logoColor=white)
+[![CI](https://github.com/NerkaKiss/depo-playwright-ts/actions/workflows/playwright.yml/badge.svg)](https://github.com/NerkaKiss/depo-playwright-ts/actions/workflows/playwright.yml)
 ![Allure](https://img.shields.io/badge/Allure-Report-orange)
 
 ---
