@@ -39,7 +39,7 @@ test.describe('Checkout - negative', () => {
   });
 
   test(
-    'should show error with missing required fields on step 2',
+    'should show error with missing required fields on step 3',
     { tag: ['@regression'] },
     async ({ pm }) => {
       await pm.goToHome();
@@ -53,7 +53,10 @@ test.describe('Checkout - negative', () => {
       // Step 1: proceed with default delivery method
       await pm.checkoutPage.clickContinue();
 
-      // Step 2: clear required fields and try to proceed
+      // Step 2: proceed to payment method
+      await pm.checkoutPage.clickContinue();
+
+      // Step 3: clear required fields and try to proceed
       await pm.checkoutPage.clearName();
       await pm.checkoutPage.clearPhone();
       await pm.checkoutPage.clickContinue();
