@@ -27,7 +27,10 @@ test.describe('Checkout - positive', () => {
       // Step 2: order details (pre-filled from user profile)
       await pm.checkoutPage.clickContinue();
 
-      // Step 3: verify payment method heading is visible
+      // Step 3: order shaping
+      await pm.checkoutPage.clickContinue();
+
+      // Step 4: verify payment method heading is visible
       await expect(pm.checkoutPage.paymentMethodHeading).toBeVisible();
     },
   );
