@@ -1,7 +1,17 @@
 name: Playwright Tests
 
 on:
-  workflow_dispatch: # manual trigger
+  workflow_dispatch:
+    inputs:
+      test_suite:
+        description: "Tests to run"
+        required: false
+        default: smoke
+        type: choice
+        options:
+          - smoke
+          - regression
+          - all
   pull_request:
   schedule:
     - cron: '0 2 * * *' # nightly at 02:00 UTC
@@ -13,7 +23,7 @@ permissions:
 
 jobs:
   test:
-    name: ${{ (github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch') && 'Smoke' || 'Full Regression' }}
+    name: ${{ github.event_name == 'pull_request' && 'Smoke' || github.event_name == 'schedule' && 'Full Regression' || github.event.inputs.test_suite }}
     runs-on: ubuntu-latest
     timeout-minutes: 30
 
@@ -34,7 +44,7 @@ jobs:
         run: npx playwright install --with-deps chromium
 
       - name: Run smoke tests
-        if: github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch'
+        if: github.event_name == 'pull_request' || (github.event_name == 'workflow_dispatch' && github.event.inputs.test_suite == 'smoke')
         run: npx playwright test --grep @smoke
         env:
           CI: true
@@ -42,8 +52,16 @@ jobs:
           USER_PASSWORD: ${{ secrets.USER_PASSWORD }}
 
       - name: Run full regression
-        if: github.event_name == 'schedule'
+        if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && github.event.inputs.test_suite == 'regression')
         run: npx playwright test --grep @regression
+        env:
+          CI: true
+          USER_EMAIL: ${{ secrets.USER_EMAIL }}
+          USER_PASSWORD: ${{ secrets.USER_PASSWORD }}
+
+      - name: Run all tests
+        if: github.event_name == 'workflow_dispatch' && github.event.inputs.test_suite == 'all'
+        run: npx playwright test
         env:
           CI: true
           USER_EMAIL: ${{ secrets.USER_EMAIL }}
